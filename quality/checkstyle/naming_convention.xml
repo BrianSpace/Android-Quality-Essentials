@@ -45,7 +45,7 @@
 
   <module name="RegexpOnFilename">
     <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
-    <property name="fileNamePattern" value="^([A-Z][a-z0-9]+)+$"/>
+    <property name="fileNamePattern" value="^[I]?([A-Z][a-z0-9]+)+$"/>
     <property name="match" value="false"/>
     <property name="ignoreFileNameExtensions" value="true"/>
     <message key="regexp.filename.mismatch" value="Java files should use camel names."/>
