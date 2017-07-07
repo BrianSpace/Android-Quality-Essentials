@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+  "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+  "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+  <property name="charset" value="UTF-8"/>
+  <property name="localeLanguage" value="en"/>
+
+  <property name="severity" value="error"/>
+
+  <property name="fileExtensions" value="java, xml, png, jpg, webp"/>
+
+  <!-- Checks for file naming  -->
+  <module name="RegexpOnFilename" />
+
+  <module name="RegexpOnFilename">
+    <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]res[\\/]drawable"/>
+    <property name="fileNamePattern" value="^((bg)|(ic)|(img))_([a-z0-9]+[_\-]?)+\.((png)|(jpg)|(webp)|(xml))$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch" value="Drawables should begin with ''bg_'', ''ic_'' or ''img_''."/>
+  </module>
+
+  <module name="RegexpOnFilename">
+    <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]res[\\/]layout"/>
+    <property name="fileNamePattern" value="^((activity)|(fragment)|(dialog)|(view)|(item)|(btn))_([a-z0-9]+[_\-]?)+\.xml$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch" value="Layouts should begin with ''activity_'', ''fragment_'', ''view_'', ''dialog_'', ''item_'' or ''btn_''."/>
+  </module>
+
+  <module name="RegexpOnFilename">
+    <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]res[\\/]values"/>
+    <property name="fileNamePattern" value="^((attrs)|(colors)|(dimens)|(strings)|(styles))(_[a-z0-9]+)*\.xml$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch" value="Values should begin with ''attrs_'', ''colors_'', ''dimens_'', ''strings_'' or ''styles_''."/>
+  </module>
+
+  <module name="RegexpOnFilename">
+    <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]res[\\/]"/>
+    <property name="fileNamePattern" value="^([a-z0-9]+[_]?)+$"/>
+    <property name="match" value="false"/>
+    <property name="ignoreFileNameExtensions" value="true"/>
+    <message key="regexp.filename.mismatch" value="Resource files should use ''snake'' names (lower case, concatenated by underscore)."/>
+  </module>
+
+  <module name="RegexpOnFilename">
+    <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
+    <property name="fileNamePattern" value="^([A-Z][a-z0-9]+)+$"/>
+    <property name="match" value="false"/>
+    <property name="ignoreFileNameExtensions" value="true"/>
+    <message key="regexp.filename.mismatch" value="Java files should use camel names."/>
+  </module>
+
+  <module name="RegexpOnFilename">
+    <property name="folderPattern" value="[\\/]src[\\/]((androidTest)|(test))[\\/]java[\\/]"/>
+    <property name="fileNamePattern" value="^((\w+Test)|(Base\w+))\.java$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filename.mismatch" value="All files in the ''src/androidTest/java'' or ''src/test/java'' folder should be named ''*Test.java'' or ''Base*.java''."/>
+  </module>
+
+</module>

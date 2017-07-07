@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply from: '../quality/static_analysis.gradle'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "io.github.brianspace.androidqualityessentials"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            // Run proguard
+            minifyEnabled true
+            // Zip align the APK
+            zipAlignEnabled true
+            // Remove unused resources
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        // Turn off analysis progress reporting by lint
+        quiet true
+        // Stop the gradle build if errors are found
+        abortOnError true
+        // Do not ignore lint warnings
+        ignoreWarnings false
+        // Treat warnings as errors
+        warningsAsErrors true
+
+        // Ignore rules list
+        ignore 'GoogleAppIndexingWarning' // Remove this if the app support App Indexing
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // Memory leak detection https://github.com/square/leakcanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
