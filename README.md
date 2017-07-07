@@ -7,6 +7,7 @@ Improve Android code quality with static code analysis and runtime check:
 * Resource and Memory Leaks
 
 The tools used: checkstyle, findbugs, PMD, Android Lint, StrictMode and LeakCanary.
+It is recommended that you add these checks when you create a new project and fix the problems with every check-in. Otherwise it would need enormous courage and patience when you face and fix the huge amount of errors.
 ## Get started
 1. Sync the code of this project and copy the [quality](quality) directory to the root directory of your project.
 2. Add the following line in your `build.gradle`:
@@ -96,6 +97,7 @@ Run `gradlew checkFileNames` if you would like to check only the naming conventi
    - ConstantName: all upper case, underscore allowed.
 
 Run `gradlew checkCodeStyle` if you would like to check only the code style.
+If you would like to exclude some files like 3rd party code, you can add an `exclude` item in the `checkCodeStyle` task in the [static_analysis.gradle](quality/static_analysis.gradle) file.
 ### Static Analysis with Findbugs
 [FindBugs](http://findbugs.sourceforge.net/) scan your code for [patterns](http://findbugs.sourceforge.net/bugDescriptions.html) that may result in bugs. The files to be excluded from the analysis is defined [here](quality/findbugs/android-exclude-filter.xml).
 Run `gradlew findBugs` if you would like to run findbugs only.

@@ -7,7 +7,7 @@
 * 资源和内存的泄露
 
 所使用的工具：checkstyle、findbugs、PMD、Android Lint、StrictMode以及LeakCanary。
-最好的使用方式，是在创建新项目的时候就引入这些规则。
+最好的使用方式，是在创建新项目的时候就引入这些规则在每次check-in之前修复检查到的任何错误。否则的话，面对成百上千的错误，是需要很大的勇气和毅力去逐个修复的。『从入门到放弃』并不是解决代码质量问题的正确态度。
 ## 如何使用
 1. 同步项目代码，拷贝[quality](quality)目录到你项目的根目录下。
 2. 在项目的`build.gradle`开头加入下面这一行：
@@ -97,6 +97,7 @@ public class AndroidQualityEssentialsApplication extends Application {
    - ConstantName: 全大写，允许下划线
 
 如果只想检查代码风格，可以运行`gradlew checkCodeStyle`。
+如果需要在检查时排除一些文件（比如来自第三方的代码），可以在[static_analysis.gradle](quality/static_analysis.gradle)中的`checkCodeStyle`任务内增加`exclude`项目。
 ### 静态检查：Findbugs
 [FindBugs](http://findbugs.sourceforge.net/)检查代码中可能会导致Bug的[模式](http://findbugs.sourceforge.net/bugDescriptions.html)。检查中需要排除在外的文件定义在[这儿](quality/findbugs/android-exclude-filter.xml).
 如果只想进行findbugs检查，可以运行`gradlew findBugs`。
