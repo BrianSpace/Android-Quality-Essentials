@@ -7,6 +7,7 @@ Improve Android code quality with static code analysis and runtime check:
 * Resource and Memory Leaks
 
 The tools used: checkstyle, findbugs, PMD, Android Lint, StrictMode and LeakCanary.
+
 It is recommended that you add these checks when you create a new project and fix the problems with every check-in. Otherwise it would need enormous courage and patience when you face and fix the huge amount of errors.
 ## Get started
 1. Sync the code of this project and copy the [quality](quality) directory to the root directory of your project.
@@ -73,7 +74,12 @@ public class AndroidQualityEssentialsApplication extends Application {
 -  The analysis report will be located in the `build/reports/` directory of the project in which you apply the `static_analysis.gradle`.
 7. Run your debug version application for runtime check.
 8. Add the check step to your Continuous Integration process.
-
+## Tips to fix issues
+### Add "final" to variables automatically
+1. Select "Analyze"->"Run Inspection by Name..." menu, search "be final", then run the following two rules under "Java"->"Code style issues":
+    * Field may be 'final'
+    * Local variable or parameter may be final
+2. After each run, in the result panel, click "Make final" button to add "final" automatically.
 ## What will be checked?
 ### Naming Conventions
 Naming conventions are defined in the [quality/checkstyle/naming_convention.xml](quality/checkstyle/naming_convention.xml) file. The following rules are defined:

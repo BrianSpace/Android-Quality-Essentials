@@ -7,6 +7,7 @@
 * 资源和内存的泄露
 
 所使用的工具：checkstyle、findbugs、PMD、Android Lint、StrictMode以及LeakCanary。
+
 最好的使用方式，是在创建新项目的时候就引入这些规则在每次check-in之前修复检查到的任何错误。否则的话，面对成百上千的错误，是需要很大的勇气和毅力去逐个修复的。『从入门到放弃』并不是解决代码质量问题的正确态度。
 ## 如何使用
 1. 同步项目代码，拷贝[quality](quality)目录到你项目的根目录下。
@@ -73,7 +74,12 @@ public class AndroidQualityEssentialsApplication extends Application {
 -  分析报告在应用了`static_analysis.gradle`的项目的`build/reports/`目录下。
 7. 运行Debug版本的应用进行运行时检查。
 8. 把check过程加入持续集成的步骤中。
-
+## 常见问题的修复
+### 给变量、参数、域自动增加"final"关键字
+1. 打开"Analyze"->"Run Inspection by Name..."菜单，搜索"be final"，然后运行在"Java"->"Code style issues"下的以下两条规则：
+    * Field may be 'final'
+    * Local variable or parameter may be final
+2. 每次检查完成后，在结果面板中点击"Make final"按钮，就可以自动添加"final"关键字了。
 ## 检查详情
 ### 命名规范
 命名规范定义在[quality/checkstyle/naming_convention.xml](quality/checkstyle/naming_convention.xml)文件中。
