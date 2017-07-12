@@ -26,6 +26,11 @@
     <!-- exclude name="TooManyStaticImports"/-->
   </rule>
   <rule ref="rulesets/java/junit.xml"/>
+  <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">
+    <properties>
+      <property name="maximumAsserts" value="3"/>
+    </properties>
+  </rule>
   <!-- Usually we use android.util.Log so the logging rule does not apply. -->
   <!-- rule ref="rulesets/java/logging-java.xml" -->
   <rule ref="rulesets/java/naming.xml">
