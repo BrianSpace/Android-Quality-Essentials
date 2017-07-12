@@ -42,6 +42,12 @@
     <!-- Exclude if underscore is allowed in variable names. -->
     <!--exclude name="VariableNamingConventions" /-->
   </rule>
+  <!-- Allow field like isXXX has the same name as a method. -->
+  <rule ref="rulesets/java/naming.xml/AvoidFieldNameMatchingMethodName">
+    <properties>
+      <property name="violationSuppressRegex" value="Field is[A-Z][\w]* has the same name as a method"/>
+    </properties>
+  </rule>
   <rule ref="rulesets/java/optimizations.xml"/>
   <rule ref="rulesets/java/strictexception.xml"/>
   <rule ref="rulesets/java/strings.xml">
