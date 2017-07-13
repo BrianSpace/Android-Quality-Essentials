@@ -69,7 +69,7 @@ task findBugs(type: ParallelFindBugs,
     effort = "max"
     reportLevel = "high"
     excludeFilter = new File("$qualityDir/findbugs/android-exclude-filter.xml")
-    classes = files("$project.rootDir/app/build/intermediates/classes")
+    classes = files("$project.projectDir/build/intermediates/classes")
 
     source 'src'
     include '**/*.java'
