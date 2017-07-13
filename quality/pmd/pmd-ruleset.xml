@@ -41,6 +41,7 @@
     <exclude name="ShortMethodName"/>
     <exclude name="ShortVariable"/>
     <exclude name="ShortClassName"/>
+    <exclude name="GenericsNaming"/>
     <!-- Exclude if underscore is allowed in variable names. -->
     <!--exclude name="VariableNamingConventions" /-->
   </rule>

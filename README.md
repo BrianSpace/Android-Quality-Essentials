@@ -112,6 +112,8 @@ public final class FileUtil {
 All the static analysis rules are best practices from people's past experience, but they are not always truth that cannot be broken. Some of the PMD rules need to be based on your own preferences:
 1. [AccessorMethodGeneration](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#AccessorMethodGeneration)
 This rule prefer performance and reducing method count over encapsulation, usually I  care more about encapsulation so I exclude this rule. But if you care more about performance and method count (to avoid Multi-dex), you can include it.
+2. [GenericsNaming](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/naming.html#GenericsNaming)
+This rule prefer a single upper case letter for generic values. But I prefer some more meaningful names with "T" letter as the postfix, like `ItemTypeT`, for better readability. You can remove it from the "exclude" list if you like the single letter naming.
 ## What will be checked?
 ### Naming Conventions
 Naming conventions are defined in the [quality/checkstyle/naming_convention.xml](quality/checkstyle/naming_convention.xml) file. The following rules are defined:

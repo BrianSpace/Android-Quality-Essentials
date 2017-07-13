@@ -112,6 +112,8 @@ public final class FileUtil {
 代码检查的规则都是人们长期总结出来的最佳实践，但并不是放之四海而皆准的真理。有些规则需要根据项目的具体需求来确定是否采用：
 1. [AccessorMethodGeneration](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#AccessorMethodGeneration)
 这个规则更关注性能以及减少方法数，单就我个人而言更关心信息的封装，所以我在PMD配置中排除了这个规则。如果你更关心运行的性能以及方法数（以避免Multi-dex的问题），那你就应该把这个规则包含进来。
+2. [GenericsNaming](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/naming.html#GenericsNaming)
+这个规则要求泛型的参数都采用单个大写字母。从可读性的角度我更喜欢更有意义的命名方式：以"T"结尾的类型命名，如`ItemTypeT`。如果你更喜欢看起来更简单的单字母命名，可以把这个规则从exclude中去掉。
 ## 检查详情
 ### 命名规范
 命名规范定义在[quality/checkstyle/naming_convention.xml](quality/checkstyle/naming_convention.xml)文件中。
