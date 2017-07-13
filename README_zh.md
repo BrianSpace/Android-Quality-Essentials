@@ -80,6 +80,38 @@ public class AndroidQualityEssentialsApplication extends Application {
     * Field may be 'final'
     * Local variable or parameter may be final
 2. 每次检查完成后，在结果面板中点击"Make final"按钮，就可以自动添加"final"关键字了。
+### 创建工具类（Utility Class）
+对于PMD规则[UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass)，如果你的类只有静态成员变量和函数，会提示你创建Utility Class。你需要：
+    * 把类定义为final。
+    * 创建一个私有的构造函数并抛出异常，以免被实例化。
+例子：
+```java
+public final class FileUtil {
+
+    private static Context appContext;
+
+    private FileUtil() throws InstantiationException {
+        throw new InstantiationException("Utility class FileUtil should not be instantiated!");
+    }
+
+    public static void init(final Context context) {
+        appContext = context.getApplicationContext();
+    }
+
+    /**
+     * Get available cache directory. Prefer external over internal.
+     */
+    @NonNull
+    public static File getAvailableCacheDir() {
+        final File externalCacheDir = appContext.getExternalCacheDir();
+        return externalCacheDir == null ? appContext.getCacheDir() : externalCacheDir;
+    }
+}
+```
+## PMD规则的权衡
+代码检查的规则都是人们长期总结出来的最佳实践，但并不是放之四海而皆准的真理。有些规则需要根据项目的具体需求来确定是否采用：
+1. [AccessorMethodGeneration](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#AccessorMethodGeneration)
+这个规则更关注性能以及减少方法数，单就我个人而言更关心信息的封装，所以我在PMD配置中排除了这个规则。如果你更关心运行的性能以及方法数（以避免Multi-dex的问题），那你就应该把这个规则包含进来。
 ## 检查详情
 ### 命名规范
 命名规范定义在[quality/checkstyle/naming_convention.xml](quality/checkstyle/naming_convention.xml)文件中。

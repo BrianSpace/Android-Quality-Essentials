@@ -80,6 +80,38 @@ public class AndroidQualityEssentialsApplication extends Application {
     * Field may be 'final'
     * Local variable or parameter may be final
 2. After each run, in the result panel, click "Make final" button to add "final" automatically.
+### Create Utility Class
+For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass), it will prompt to create Utility Class if your class has only static fields and methods. You just need:
+    * Define your utility class as final.
+    * Create a private constructor and throw exception in it to prevent instantiation.
+Sample:
+```java
+public final class FileUtil {
+
+    private static Context appContext;
+
+    private FileUtil() throws InstantiationException {
+        throw new InstantiationException("Utility class FileUtil should not be instantiated!");
+    }
+
+    public static void init(final Context context) {
+        appContext = context.getApplicationContext();
+    }
+
+    /**
+     * Get available cache directory. Prefer external over internal.
+     */
+    @NonNull
+    public static File getAvailableCacheDir() {
+        final File externalCacheDir = appContext.getExternalCacheDir();
+        return externalCacheDir == null ? appContext.getCacheDir() : externalCacheDir;
+    }
+}
+```
+## Trade-offs for PMD rules
+All the static analysis rules are best practices from people's past experience, but they are not always truth that cannot be broken. Some of the PMD rules need to be based on your own preferences:
+1. [AccessorMethodGeneration](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#AccessorMethodGeneration)
+This rule prefer performance and reducing method count over encapsulation, usually I  care more about encapsulation so I exclude this rule. But if you care more about performance and method count (to avoid Multi-dex), you can include it.
 ## What will be checked?
 ### Naming Conventions
 Naming conventions are defined in the [quality/checkstyle/naming_convention.xml](quality/checkstyle/naming_convention.xml) file. The following rules are defined:
