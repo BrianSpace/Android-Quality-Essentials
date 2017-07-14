@@ -1,6 +1,6 @@
 # AndroidQualityEssentials [中文](README_zh.md)
 Improve Android code quality with static code analysis and runtime check:
-* Naming Convention
+* Naming Convention (Especially for resource files)
 * Code Style
 * Potential Bugs
 * Potential ANR (slow operations in the main thread)
@@ -75,6 +75,8 @@ public class AndroidQualityEssentialsApplication extends Application {
 7. Run your debug version application for runtime check.
 8. Add the check step to your Continuous Integration process.
 ## Tips to fix issues
+### Allow member fields to begin with "m" letter
+The naming convention defined in the [style rules](quality/checkstyle/google_checks.xml) does not allow single letter prefix for member field names like "mMember". But if you like this style, you can change the `format` property of the `MemberName` module to "^[a-z][a-zA-Z0-9]*$". Or change to "^m[A-Z][a-zA-Z0-9]*$" to force the "m" prefix.
 ### Add "final" to variables automatically
 1. Select "Analyze"->"Run Inspection by Name..." menu, search "be final", then run the following two rules under "Java"->"Code style issues":
     * Field may be 'final'
