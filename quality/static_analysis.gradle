@@ -1,6 +1,6 @@
-apply plugin: 'checkstyle'  // https://docs.gradle.org/3.3/userguide/checkstyle_plugin.html
+apply plugin: 'checkstyle'              // https://docs.gradle.org/3.3/userguide/checkstyle_plugin.html
 apply plugin: 'findbugs'    // https://docs.gradle.org/3.3/userguide/findbugs_plugin.html
-apply plugin: 'pmd'         // https://docs.gradle.org/3.3/userguide/pmd_plugin.html
+apply plugin: 'pmd'                     // https://docs.gradle.org/3.3/userguide/pmd_plugin.html
 
 def qualityDir = "$project.rootDir/quality/";
 def reportsDir = "$project.buildDir/reports"
@@ -15,7 +15,7 @@ checkstyle {
 
 // https://pmd.github.io/
 pmd {
-    toolVersion = '5.8.0'
+    toolVersion = '5.8.1'
 }
 
 task checkFileNames(type: ParallelCheckstyle, group: 'Verification', description: 'Check file naming convention.') {
