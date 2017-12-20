@@ -18,8 +18,10 @@
   <rule ref="rulesets/java/coupling.xml">
     <!-- Very common in activities. -->
     <exclude name="LawOfDemeter"/>
+    <exclude name="LoosePackageCoupling"/>
   </rule>
   <rule ref="rulesets/java/design.xml">
+    <!-- Include if you care more about performance and method counts than encapsulation. -->
     <exclude name="AccessorMethodGeneration"/>
   </rule>
   <rule ref="rulesets/java/empty.xml"/>
