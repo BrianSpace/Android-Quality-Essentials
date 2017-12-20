@@ -1,15 +1,15 @@
-apply plugin: 'checkstyle'              // https://docs.gradle.org/3.3/userguide/checkstyle_plugin.html
+apply plugin: 'checkstyle'  // https://docs.gradle.org/3.3/userguide/checkstyle_plugin.html
 apply plugin: 'findbugs'    // https://docs.gradle.org/3.3/userguide/findbugs_plugin.html
-apply plugin: 'pmd'                     // https://docs.gradle.org/3.3/userguide/pmd_plugin.html
+apply plugin: 'pmd'         // https://docs.gradle.org/3.3/userguide/pmd_plugin.html
 
-def qualityDir = "$project.rootDir/quality/";
-def reportsDir = "$project.buildDir/reports"
+final def qualityDir = "$project.rootDir/quality/";
+final def reportsDir = "$project.buildDir/reports"
 
 check.dependsOn 'checkFileNames', 'checkCodeStyle', 'findBugs', 'pmdCheck'
 
 // http://checkstyle.sourceforge.net/
 checkstyle {
-    toolVersion '7.8.2'
+    toolVersion '8.5'
     showViolations true
 }
 
@@ -18,7 +18,7 @@ pmd {
     toolVersion = '5.8.1'
 }
 
-task checkFileNames(type: ParallelCheckstyle, group: 'Verification', description: 'Check file naming convention.') {
+task checkFileNames(type: Checkstyle, group: 'Verification', description: 'Check file naming convention.') {
     configFile file("$qualityDir/checkstyle/naming_convention.xml")
     source 'src'
     include '**/*.java'
@@ -31,14 +31,14 @@ task checkFileNames(type: ParallelCheckstyle, group: 'Verification', description
     reports {
         xml.enabled = true
         xml {
-            destination "$reportsDir/checkstyle/check_file_names.xml"
+            destination file("$reportsDir/checkstyle/check_file_names.xml")
         }
     }
 
     classpath = files()
 }
 
-task checkCodeStyle(type: ParallelCheckstyle, group: 'Verification', description: 'Run Checkstyle') {
+task checkCodeStyle(type: Checkstyle, group: 'Verification', description: 'Run Checkstyle') {
     configFile file("$qualityDir/checkstyle/google_checks.xml")
     source 'src'
     include '**/*.java'
@@ -47,7 +47,7 @@ task checkCodeStyle(type: ParallelCheckstyle, group: 'Verification', description
     reports {
         xml.enabled = true
         xml {
-            destination "$reportsDir/checkstyle/check_code_style.xml"
+            destination file("$reportsDir/checkstyle/check_code_style.xml")
         }
     }
 
@@ -61,7 +61,7 @@ tasks.whenTaskAdded { task ->
 }
 
 // http://findbugs.sourceforge.net/
-task findBugs(type: ParallelFindBugs,
+task findBugs(type: FindBugs,
     group: 'Verification',
     description: 'Run FindBugs') {
 
@@ -80,11 +80,11 @@ task findBugs(type: ParallelFindBugs,
         xml.enabled = false
         html.enabled = !xml.isEnabled()
         xml {
-            destination "$reportsDir/findbugs/findbugs.xml"
+            destination file("$reportsDir/findbugs/findbugs.xml")
             withMessages true
         }
         html {
-            destination "$reportsDir/findbugs/findbugs.html"
+            destination file("$reportsDir/findbugs/findbugs.html")
         }
     }
 
@@ -92,7 +92,7 @@ task findBugs(type: ParallelFindBugs,
 }
 
 
-task pmdCheck(type: ParallelPmd, group: 'Verification', description: 'Run PMD') {
+task pmdCheck(type: Pmd, group: 'Verification', description: 'Run PMD') {
     ruleSetFiles = files("$qualityDir/pmd/pmd-ruleset.xml")
     ignoreFailures = false
     ruleSets = []
@@ -105,24 +105,10 @@ task pmdCheck(type: ParallelPmd, group: 'Verification', description: 'Run PMD') 
         xml.enabled = true
         html.enabled = true
         xml {
-            destination "$reportsDir/pmd/pmd.xml"
+            destination file("$reportsDir/pmd/pmd.xml")
         }
         html {
-            destination "$reportsDir/pmd/pmd.html"
+            destination file("$reportsDir/pmd/pmd.html")
         }
     }
-}
-
-// Reference: https://medium.com/@dpreussler/speed-up-your-android-gradle-build-baa329cdb836
-
-@ParallelizableTask
-class ParallelCheckstyle extends Checkstyle {
-}
-
-@ParallelizableTask
-class ParallelFindBugs extends FindBugs {
-}
-
-@ParallelizableTask
-class ParallelPmd extends Pmd {
 }
