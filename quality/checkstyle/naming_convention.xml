@@ -16,9 +16,9 @@
 
   <module name="RegexpOnFilename">
     <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]res[\\/]drawable"/>
-    <property name="fileNamePattern" value="^((bg)|(ic)|(img))_([a-z0-9]+[_\-]?)+\.((png)|(jpg)|(webp)|(xml))$"/>
+    <property name="fileNamePattern" value="^((bg)|(ic)|(sel)|(img))_([a-z0-9]+[_\-]?)+(\.9)?\.((png)|(jpg)|(webp)|(xml))$"/>
     <property name="match" value="false"/>
-    <message key="regexp.filename.mismatch" value="Drawables should begin with ''bg_'', ''ic_'' or ''img_''."/>
+    <message key="regexp.filename.mismatch" value="Drawables should begin with ''bg_''(background), ''ic_''(icon), ''sel_''(selector) or ''img_''."/>
   </module>
 
   <module name="RegexpOnFilename">
@@ -30,14 +30,14 @@
 
   <module name="RegexpOnFilename">
     <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]res[\\/]values"/>
-    <property name="fileNamePattern" value="^((attrs)|(colors)|(dimens)|(strings)|(styles))(_[a-z0-9]+)*\.xml$"/>
+    <property name="fileNamePattern" value="^((attr)|(color)|(dimen)|(string)|(style))[s]?(_[a-z0-9]+)*\.xml$"/>
     <property name="match" value="false"/>
     <message key="regexp.filename.mismatch" value="Values should begin with ''attrs_'', ''colors_'', ''dimens_'', ''strings_'' or ''styles_''."/>
   </module>
 
   <module name="RegexpOnFilename">
     <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]res[\\/]"/>
-    <property name="fileNamePattern" value="^([a-z0-9]+[_]?)+$"/>
+    <property name="fileNamePattern" value="^([a-z0-9]+[_]?)+(\.9)?$"/>
     <property name="match" value="false"/>
     <property name="ignoreFileNameExtensions" value="true"/>
     <message key="regexp.filename.mismatch" value="Resource files should use ''snake'' names (lower case, concatenated by underscore)."/>
