@@ -78,14 +78,14 @@ public class AndroidQualityEssentialsApplication extends Application {
 ### Allow member fields to begin with "m" letter
 The naming convention defined in the [style rules](quality/checkstyle/google_checks.xml) does not allow single letter prefix for member field names like "mMember". But if you like this style, you can change the `format` property of the `MemberName` module to "^[a-z][a-zA-Z0-9]*$". Or change to "^m[A-Z][a-zA-Z0-9]*$" to force the "m" prefix.
 ### Add "final" to variables automatically
-1. Select "Analyze"->"Run Inspection by Name..." menu, search "be final", then run the following two rules under "Java"->"Code style issues":
+1. In Android Studio, select "Analyze"->"Run Inspection by Name..." menu, search "be final", then run the following two rules under "Java"->"Code style issues":
     * Field may be 'final'
     * Local variable or parameter may be final
 2. After each run, in the result panel, click "Make final" button to add "final" automatically.
 ### Create Utility Class
-For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass), it will prompt to create Utility Class if your class has only static fields and methods. You just need:
-    * Define your utility class as final.
-    * Create a private constructor and throw exception in it to prevent instantiation.
+For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass), it will prompt to create Utility Class if your class has only static fields and methods. You just need to:
+* Define your utility class as final.
+* Create a private constructor and throw exception in it to prevent instantiation.
 Sample:
 ```java
 public final class FileUtil {

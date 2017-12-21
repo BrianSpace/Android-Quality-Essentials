@@ -83,9 +83,9 @@ public class AndroidQualityEssentialsApplication extends Application {
     * Local variable or parameter may be final
 2. 每次检查完成后，在结果面板中点击"Make final"按钮，就可以自动添加"final"关键字了。
 ### 创建工具类（Utility Class）
-对于PMD规则[UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass)，如果你的类只有静态成员变量和函数，会提示你创建Utility Class。你需要：
-    * 把类定义为final。
-    * 创建一个私有的构造函数并抛出异常，以免被实例化。
+对于PMD规则[UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass)，如果你的类只有静态成员变量和函数，会提示你创建Utility Class。你需要：
+  * 把类定义为final。
+  * 创建一个私有的构造函数并抛出异常，以免被实例化。
 例子：
 ```java
 public final class FileUtil {
