@@ -84,8 +84,8 @@ The naming convention defined in the [style rules](quality/checkstyle/google_che
 2. After each run, in the result panel, click "Make final" button to add "final" automatically.
 ### Create Utility Class
 For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass), it will prompt to create Utility Class if your class has only static fields and methods. You just need to:
-* Define your utility class as final.
-* Create a private constructor and throw exception in it to prevent instantiation.
+  * Define your utility class as final.
+  * Create a private constructor and throw exception in it to prevent instantiation.
 Sample:
 ```java
 public final class FileUtil {

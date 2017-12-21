@@ -74,11 +74,12 @@ public class AndroidQualityEssentialsApplication extends Application {
 -  分析报告在应用了`static_analysis.gradle`的项目的`build/reports/`目录下。
 7. 运行Debug版本的应用进行运行时检查。
 8. 把check过程加入持续集成的步骤中。
+
 ## 常见问题的修复
 ### 允许成员变量以"m"开头
-在[命名规则](quality/checkstyle/google_checks.xml)中不允许像"mMember"这样以单个小写字母为前缀的成员变量命名方式。但是如果你喜欢这种命名方式，可以把`MemberName`模块的`format`属性改成"^[a-z][a-zA-Z0-9]*$"。也可以改成"^m[A-Z][a-zA-Z0-9]*$"来强制使用以"m"为前缀的成员变量命名方式。
+在[命名规则](quality/checkstyle/google_checks.xml)中不允许像"mMember"这样以单个小写字母为前缀的成员变量命名方式。但是如果你喜欢这种命名方式，可以把"`MemberName`"模块的"`format`"属性改成"`^[a-z][a-zA-Z0-9]*$`"。也可以改成"`^m[A-Z][a-zA-Z0-9]*$`"来强制使用以"m"为前缀的成员变量命名方式。
 ### 给变量、参数、域自动增加"final"关键字
-1. 打开"Analyze"->"Run Inspection by Name..."菜单，搜索"be final"，然后运行在"Java"->"Code style issues"下的以下两条规则：
+1. 在Android Studio中打开"Analyze"->"Run Inspection by Name..."菜单，搜索"be final"，然后运行在"Java"->"Code style issues"下的以下两条规则：
     * Field may be 'final'
     * Local variable or parameter may be final
 2. 每次检查完成后，在结果面板中点击"Make final"按钮，就可以自动添加"final"关键字了。
