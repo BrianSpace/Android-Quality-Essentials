@@ -83,7 +83,7 @@ The naming convention defined in the [style rules](quality/checkstyle/google_che
     * Local variable or parameter may be final
 2. After each run, in the result panel, click "Make final" button to add "final" automatically.
 ### Create Utility Class
-For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass), it will prompt to create Utility Class if your class has only static fields and methods. You just need to:
+For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass), it will prompt to create Utility Class if your class has only static fields and methods. You just need to:
   * Define your utility class as final.
   * Create a private constructor and throw exception in it to prevent instantiation.
 Sample:
@@ -160,7 +160,6 @@ and [VmPolicy.Builder](https://developer.android.com/reference/android/os/Strict
 
 ## Thanks
 * The static analysis config for findbugs and PMD is based on <https://github.com/ribot/android-boilerplate>.
-* The method to run the checks in parallel is from <https://medium.com/@dpreussler/speed-up-your-android-gradle-build-baa329cdb836>.
 
 License
 =======
