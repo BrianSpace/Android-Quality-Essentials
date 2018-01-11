@@ -77,7 +77,7 @@ public class AndroidQualityEssentialsApplication extends Application {
 
 ## 常见问题的修复
 ### 允许成员变量以"m"开头
-在[命名规则](quality/checkstyle/google_checks.xml)中不允许像"mMember"这样以单个小写字母为前缀的成员变量命名方式。但是如果你喜欢这种命名方式，可以把"`MemberName`"模块的"`format`"属性改成"`^[a-z][a-zA-Z0-9]*$`"。也可以改成"`^m[A-Z][a-zA-Z0-9]*$`"来强制使用以"m"为前缀的成员变量命名方式。
+在[命名规则](quality/checkstyle/google_checks.xml)中不允许像"mMember"这样以单个小写字母为前缀的成员变量命名方式。但是如果你喜欢这种命名方式，可以把"`MemberName`"模块的"`format`"属性改成"`^[a-z][a-zA-Z0-9]*$`"。也可以改成"`^m[A-Z][a-zA-Z0-9]*$`"来强制使用以"m"为前缀的成员变量命名方式。
 ### 给变量、参数、域自动增加"final"关键字
 1. 在Android Studio中打开"Analyze"->"Run Inspection by Name..."菜单，搜索"be final"，然后运行在"Java"->"Code style issues"下的以下两条规则：
     * Field may be 'final'
@@ -114,7 +114,7 @@ public final class FileUtil {
 ## PMD规则的权衡
 代码检查的规则都是人们长期总结出来的最佳实践，但并不是放之四海而皆准的真理。有些规则需要根据项目的具体需求来确定是否采用：
 1. [AccessorMethodGeneration](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#AccessorMethodGeneration)
-这个规则更关注性能以及减少方法数，单就我个人而言更关心信息的封装，所以我在PMD配置中排除了这个规则。如果你更关心运行的性能以及方法数（以避免Multi-dex的问题），那你就应该把这个规则包含进来。
+这个规则更关注性能以及减少方法数，单就我个人而言更关心信息的封装，所以我在PMD配置中排除了这个规则。如果你更关心运行的性能以及方法数（以避免Multi-dex的问题），那你就应该把这个规则包含进来。
 2. [GenericsNaming](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/naming.html#GenericsNaming)
 这个规则要求泛型的参数都采用单个大写字母。从可读性的角度我更喜欢更有意义的命名方式：以"T"结尾的类型命名，如`ItemTypeT`。如果你更喜欢看起来更简单的单字母命名，可以把这个规则从exclude中去掉。
 ## 检查详情
