@@ -4,8 +4,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+/**
+ * Main activity for the application.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Log tag.
+     */
     private static final String TAG = "MainActivity";
 
     @Override

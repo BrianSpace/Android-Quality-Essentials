@@ -3,7 +3,7 @@ apply from: '../quality/static_analysis.gradle'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.2"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "io.github.brianspace.androidqualityessentials"
         minSdkVersion 15
@@ -11,6 +11,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -32,6 +36,10 @@ android {
         ignoreWarnings false
         // Treat warnings as errors
         warningsAsErrors true
+
+        // Write log to console
+        textReport true
+        textOutput "stdout"
 
         // Ignore rules list
         ignore 'GoogleAppIndexingWarning' // Remove this if the app support App Indexing

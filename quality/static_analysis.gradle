@@ -9,13 +9,13 @@ check.dependsOn 'checkFileNames', 'checkCodeStyle', 'findBugs', 'pmdCheck'
 
 // http://checkstyle.sourceforge.net/
 checkstyle {
-    toolVersion '8.5'
+    toolVersion '8.8'
     showViolations true
 }
 
 // https://pmd.github.io/
 pmd {
-    toolVersion = '5.8.1'
+    toolVersion = '6.0.1'
 }
 
 task checkFileNames(type: Checkstyle, group: 'Verification', description: 'Check file naming convention.') {

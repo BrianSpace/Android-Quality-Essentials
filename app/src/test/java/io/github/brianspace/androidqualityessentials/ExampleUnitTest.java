@@ -11,6 +11,10 @@ import org.junit.Test;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+
+    /**
+     * Sample test case.
+     */
     @Test
     public void additionIsCorrect() throws ComparisonFailure {
         assertEquals("Not equal!", 4, 2 + 2);

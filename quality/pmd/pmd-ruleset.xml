@@ -10,34 +10,17 @@
   <exclude-pattern>.*/R.java</exclude-pattern>
   <exclude-pattern>.*/gen/.*</exclude-pattern>
 
-  <rule ref="rulesets/java/android.xml"/>
-  <rule ref="rulesets/java/basic.xml"/>
-  <rule ref="rulesets/java/braces.xml"/>
-  <rule ref="rulesets/java/clone.xml"/>
-  <rule ref="rulesets/java/codesize.xml"/>
-  <rule ref="rulesets/java/coupling.xml">
-    <!-- Very common in activities. -->
-    <exclude name="LawOfDemeter"/>
-    <exclude name="LoosePackageCoupling"/>
-  </rule>
-  <rule ref="rulesets/java/design.xml">
+  <rule ref="category/java/bestpractices.xml">
     <!-- Include if you care more about performance and method counts than encapsulation. -->
     <exclude name="AccessorMethodGeneration"/>
   </rule>
-  <rule ref="rulesets/java/empty.xml"/>
-  <rule ref="rulesets/java/imports.xml">
-    <!-- Exclude if you use Espresso. -->
-    <!-- exclude name="TooManyStaticImports"/-->
-  </rule>
-  <rule ref="rulesets/java/junit.xml"/>
-  <rule ref="rulesets/java/junit.xml/JUnitTestContainsTooManyAsserts">
+  <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
     <properties>
       <property name="maximumAsserts" value="3"/>
     </properties>
   </rule>
-  <!-- Usually we use android.util.Log so the logging rule does not apply. -->
-  <!-- rule ref="rulesets/java/logging-java.xml" -->
-  <rule ref="rulesets/java/naming.xml">
+  <rule ref="category/java/codestyle.xml">
+    <exclude name="AtLeastOneConstructor"/>
     <exclude name="AbstractNaming"/>
     <exclude name="LongVariable"/>
     <exclude name="ShortMethodName"/>
@@ -45,22 +28,27 @@
     <exclude name="ShortClassName"/>
     <exclude name="GenericsNaming"/>
     <!-- Exclude if underscore is allowed in variable names. -->
-    <!--exclude name="VariableNamingConventions" /-->
+    <!-- exclude name="VariableNamingConventions" /-->
+    <!-- Exclude if you use Espresso. -->
+    <!-- exclude name="TooManyStaticImports"/-->
+  </rule>
+  <rule ref="category/java/design.xml">
+    <!-- Very common in activities. -->
+    <exclude name="LawOfDemeter"/>
+    <exclude name="LoosePackageCoupling"/>
+  </rule>
+  <rule ref="category/java/documentation.xml"/>
+  <rule ref="category/java/errorprone.xml">
+    <!-- Exclude if causes problems with SQL Strings that usually require duplication -->
+    <!-- exclude name="AvoidDuplicateLiterals"/-->
   </rule>
   <!-- Allow field like isXXX has the same name as a method. -->
-  <rule ref="rulesets/java/naming.xml/AvoidFieldNameMatchingMethodName">
+  <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingMethodName">
     <properties>
       <property name="violationSuppressRegex" value="Field is[A-Z][\w]* has the same name as a method"/>
     </properties>
   </rule>
-  <rule ref="rulesets/java/optimizations.xml"/>
-  <rule ref="rulesets/java/strictexception.xml"/>
-  <rule ref="rulesets/java/strings.xml">
-    <!-- Exclude if causes problems with SQL Strings that usually require duplication -->
-    <!-- exclude name="AvoidDuplicateLiterals"/-->
-  </rule>
-  <rule ref="rulesets/java/sunsecure.xml"/>
-  <rule ref="rulesets/java/typeresolution.xml"/>
-  <rule ref="rulesets/java/unnecessary.xml"/>
-  <rule ref="rulesets/java/unusedcode.xml"/>
+  <rule ref="category/java/multithreading.xml"/>
+  <rule ref="category/java/performance.xml"/>
+
 </ruleset>

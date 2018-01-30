@@ -18,6 +18,9 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
+    /**
+     * Sample test case.
+     */
     @Test
     public void useAppContext() throws ComparisonFailure {
         // Context of the app under test.

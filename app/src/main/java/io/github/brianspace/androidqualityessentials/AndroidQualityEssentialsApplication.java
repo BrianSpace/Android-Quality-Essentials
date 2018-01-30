@@ -4,6 +4,9 @@ import android.app.Application;
 import android.os.StrictMode;
 import com.squareup.leakcanary.LeakCanary;
 
+/**
+ * Application class.
+ */
 public class AndroidQualityEssentialsApplication extends Application {
     @Override
     public void onCreate() {
