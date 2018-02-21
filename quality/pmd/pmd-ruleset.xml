@@ -22,25 +22,49 @@
   <rule ref="category/java/codestyle.xml">
     <exclude name="AtLeastOneConstructor"/>
     <exclude name="AbstractNaming"/>
+    <!-- Overkill -->
+    <exclude name="AvoidFinalLocalVariable"/>
+    <exclude name="CallSuperInConstructor"/>
     <exclude name="LongVariable"/>
     <exclude name="ShortMethodName"/>
     <exclude name="ShortVariable"/>
     <exclude name="ShortClassName"/>
     <exclude name="GenericsNaming"/>
+    <exclude name="DefaultPackage"/>
+    <exclude name="OnlyOneReturn"/>
     <!-- Exclude if underscore is allowed in variable names. -->
-    <!-- exclude name="VariableNamingConventions" /-->
+    <!--<exclude name="VariableNamingConventions" />-->
     <!-- Exclude if you use Espresso. -->
-    <!-- exclude name="TooManyStaticImports"/-->
+    <exclude name="TooManyStaticImports"/>
+    <!-- Exclude if you use a lot of package private declarations. -->
+    <!--<exclude name="CommentDefaultAccessModifier"/>-->
   </rule>
   <rule ref="category/java/design.xml">
     <!-- Very common in activities. -->
     <exclude name="LawOfDemeter"/>
     <exclude name="LoosePackageCoupling"/>
   </rule>
+  <rule ref="category/java/design.xml/NcssCount">
+    <properties>
+      <property name="methodReportLevel" value="20"/>
+    </properties>
+  </rule>
   <rule ref="category/java/documentation.xml"/>
+  <rule ref="category/java/documentation.xml/CommentSize">
+    <properties>
+      <property name="maxLines" value="7"/>
+      <property name="maxLineLength" value="120"/>
+    </properties>
+  </rule>
   <rule ref="category/java/errorprone.xml">
+    <!-- Only classes implements Serializable should care about this rule. -->
+    <exclude name="BeanMembersShouldSerialize"/>
+    <!-- This rule always reports error for for-each loop. -->
+    <exclude name="DataflowAnomalyAnalysis"/>
+    <!-- Usually intended -->
+    <exclude name="NullAssignment"/>
     <!-- Exclude if causes problems with SQL Strings that usually require duplication -->
-    <!-- exclude name="AvoidDuplicateLiterals"/-->
+    <!--<exclude name="AvoidDuplicateLiterals"/>-->
   </rule>
   <!-- Allow field like isXXX has the same name as a method. -->
   <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingMethodName">
