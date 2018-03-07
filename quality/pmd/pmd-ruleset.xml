@@ -49,13 +49,16 @@
       <property name="methodReportLevel" value="20"/>
     </properties>
   </rule>
-  <rule ref="category/java/documentation.xml"/>
-  <rule ref="category/java/documentation.xml/CommentSize">
-    <properties>
-      <property name="maxLines" value="7"/>
-      <property name="maxLineLength" value="120"/>
-    </properties>
+  <rule ref="category/java/documentation.xml">
+    <!-- The copyright header is too large so just ignore this rule. -->
+    <exclude name="CommentSize"/>
   </rule>
+  <!--<rule ref="category/java/documentation.xml/CommentSize">-->
+    <!--<properties>-->
+      <!--<property name="maxLines" value="7"/>-->
+      <!--<property name="maxLineLength" value="120"/>-->
+    <!--</properties>-->
+  <!--</rule>-->
   <rule ref="category/java/errorprone.xml">
     <!-- Only classes implements Serializable should care about this rule. -->
     <exclude name="BeanMembersShouldSerialize"/>
@@ -70,6 +73,12 @@
   <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingMethodName">
     <properties>
       <property name="violationSuppressRegex" value="Field is[A-Z][\w]* has the same name as a method"/>
+    </properties>
+  </rule>
+  <!-- Add "1" to the list of default allowed magic numbers [-1,0]. -->
+  <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition">
+    <properties>
+      <property name="ignoreMagicNumbers" value="-1,0,1"/>
     </properties>
   </rule>
   <rule ref="category/java/multithreading.xml"/>
