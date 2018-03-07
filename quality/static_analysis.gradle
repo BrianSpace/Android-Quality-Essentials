@@ -2,7 +2,7 @@ apply plugin: 'checkstyle'  // https://docs.gradle.org/3.3/userguide/checkstyle_
 apply plugin: 'findbugs'    // https://docs.gradle.org/3.3/userguide/findbugs_plugin.html
 apply plugin: 'pmd'         // https://docs.gradle.org/3.3/userguide/pmd_plugin.html
 
-final def qualityDir = "$project.rootDir/quality/"
+final def qualityDir = buildscript.sourceFile.getParent()
 final def reportsDir = "$project.buildDir/reports"
 
 check.dependsOn 'checkFileNames', 'checkCodeStyle', 'findBugs', 'pmdCheck'
