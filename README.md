@@ -10,11 +10,22 @@ The tools used: checkstyle, findbugs, PMD, Android Lint, StrictMode and LeakCana
 
 It is recommended that you add these checks when you create a new project and fix the problems with every check-in. Otherwise it would need enormous courage and patience when you face and fix the huge amount of errors.
 ## Get started
-1. Sync the code of this project and copy the [quality](quality) directory to the root directory of your project.
-2. Add the following line in your `build.gradle`:
-```
-apply from: '../quality/static_analysis.gradle'
-```
+1. Add the [quality](quality) directory to your project.
+    * You can either copy it:
+        * Sync the code of this project and copy the [quality](quality) directory to the root directory of your project.
+        * Add the following line in your `build.gradle`:
+        ```
+        apply from: '../quality/static_analysis.gradle'
+        ```
+    * Or add as a remote module. Just like in my project [Android-App-Architecture-MVVM-Databinding](https://github.com/BrianSpace/Android-App-Architecture-MVVM-Databinding):
+        * Add as a remote module:
+        ```bash
+        git remote add analysis https://github.com/BrianSpace/Android-Quality-Essentials.git
+        ```
+        * Then in your `build.gradle`:
+        ```
+        apply from: '../analysis/quality/static_analysis.gradle'
+        ```
 3. Add Lint options
 ```
 android {

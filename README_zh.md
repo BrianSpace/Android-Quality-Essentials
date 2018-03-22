@@ -10,11 +10,22 @@
 
 最好的使用方式，是在创建新项目的时候就引入这些规则在每次check-in之前修复检查到的任何错误。否则的话，面对成百上千的错误，是需要很大的勇气和毅力去逐个修复的。『从入门到放弃』并不是解决代码质量问题的正确态度。
 ## 如何使用
-1. 同步项目代码，拷贝[quality](quality)目录到你项目的根目录下。
-2. 在项目的`build.gradle`开头加入下面这一行：
-```
-apply from: '../quality/static_analysis.gradle'
-```
+1. 把[quality](quality)目录加入你的项目。
+    * 可以直接拷贝：
+        * 同步项目代码，拷贝[quality](quality)目录到你项目的根目录下。
+        * 在项目的`build.gradle`开头加入下面这一行：
+        ```
+        apply from: '../quality/static_analysis.gradle'
+        ```
+    * 或者作为remote module加入你的项目。就像在我的项目[Android-App-Architecture-MVVM-Databinding](https://github.com/BrianSpace/Android-App-Architecture-MVVM-Databinding)里面这样：
+        * 加入remote module：
+        ```bash
+        git remote add analysis https://github.com/BrianSpace/Android-Quality-Essentials.git
+        ```
+        * 然后加入`build.gradle`：
+        ```
+        apply from: '../analysis/quality/static_analysis.gradle'
+        ```
 3. 加入Lint配置
 ```
 android {
