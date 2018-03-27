@@ -8,6 +8,24 @@ Improve Android code quality with static code analysis and runtime check:
 
 It is recommended that you add these checks when you create a new project and fix the problems with every check-in (as part of your continuous integration process). Otherwise it would need enormous courage and patience when you face and fix the huge amount of errors.
 
+## Table of Contents
+ - [Get started](#get-started)
+ - [Tips to fix issues](#tips-to-fix-issues)
+    - [Allow member fields to begin with "m" letter](#allow-member-fields-to-begin-with-m-letter)
+    - [Add "final" to variables automatically](#add-final-to-variables-automatically)
+    - [Create Utility Class](#create-utility-class)
+ - [Trade-offs for PMD rules](#trade-offs-for-pmd-rules)
+ - [What will be checked?](#what-will-be-checked)
+    - [Naming Conventions](#naming-conventions)
+    - [Code Styles with CheckStyle](#code-styles-with-checkstyle)
+    - [Static Analysis with Findbugs](#static-analysis-with-findbugs)
+    - [Static Analysis with PMD](#static-analysis-with-pmd)
+    - [Static Analysis with Android Lint](#static-analysis-with-android-lint)
+    - [Runtime check with StrictMode](#runtime-check-with-strictmode)
+    - [Memory leak Detection with LeakCanary](#memory-leak-detection-with-leakcanary)
+ - [Thanks](#thanks)
+ - [License](#license)
+
 ## Get started
 1. Add the [quality](quality) directory to your project.
     * You can either copy it:

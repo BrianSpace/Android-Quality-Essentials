@@ -8,6 +8,24 @@
 
 最好的使用方式，是在创建新项目的时候就引入这些规则，在每次check-in之前修复检查到的任何错误（作为持续集成的一个检查步骤）。否则的话，面对成百上千的错误，是需要很大的勇气和毅力去逐个修复的。『从入门到放弃』并不是解决代码质量问题的正确态度。
 
+## 目录
+ - [如何使用](#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8)
+ - [常见问题的修复](#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E7%9A%84%E4%BF%AE%E5%A4%8D)
+    - [允许成员变量以"m"开头](#%E5%85%81%E8%AE%B8%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%BB%A5m%E5%BC%80%E5%A4%B4)
+    - [给变量、参数、域自动增加"final"关键字](#%E7%BB%99%E5%8F%98%E9%87%8F%E5%8F%82%E6%95%B0%E5%9F%9F%E8%87%AA%E5%8A%A8%E5%A2%9E%E5%8A%A0final%E5%85%B3%E9%94%AE%E5%AD%97)
+    - [创建工具类（Utility Class）](#%E5%88%9B%E5%BB%BA%E5%B7%A5%E5%85%B7%E7%B1%BButility-class)
+ - [PMD规则的权衡](#pmd%E8%A7%84%E5%88%99%E7%9A%84%E6%9D%83%E8%A1%A1)
+ - [检查详情](#%E6%A3%80%E6%9F%A5%E8%AF%A6%E6%83%85)
+    - [命名规范](#%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83)
+    - [使用CheckStyle检查代码风格](#%E4%BD%BF%E7%94%A8checkstyle%E6%A3%80%E6%9F%A5%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC)
+    - [静态检查：Findbugs](#%E9%9D%99%E6%80%81%E6%A3%80%E6%9F%A5findbugs)
+    - [静态检查：PMD](#%E9%9D%99%E6%80%81%E6%A3%80%E6%9F%A5pmd)
+    - [静态检查：Android Lint](#%E9%9D%99%E6%80%81%E6%A3%80%E6%9F%A5android-lint)
+    - [运行时检查：StrictMode](#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A3%80%E6%9F%A5strictmode)
+    - [使用LeakCanary发现内存泄露](#%E4%BD%BF%E7%94%A8leakcanary%E5%8F%91%E7%8E%B0%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2)
+ - [致谢](#%E8%87%B4%E8%B0%A2)
+ - [License](#license)
+ 
 ## 如何使用
 1. 把[quality](quality)目录加入你的项目。
     * 可以直接拷贝：
