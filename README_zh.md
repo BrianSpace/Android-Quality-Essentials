@@ -1,14 +1,13 @@
 # AndroidQualityEssentials [[English Version](README.md)]
 通过静态代码分析和运行时的检查来提高安卓代码质量:
-* 命名规范（特别是资源文件的命名）
-* 代码风格
-* 潜在的缺陷
-* 潜在的ANR (由主线程中的耗时操作引起的Android Not Responding)
-* 资源和内存的泄露
+* 命名规范（特别是资源文件的命名）：[CheckStyle](http://checkstyle.sourceforge.net/)
+* 代码风格：[CheckStyle](http://checkstyle.sourceforge.net/)
+* 潜在的缺陷：[FindBugs](http://findbugs.sourceforge.net/)、[PMD](https://pmd.github.io/)以及[Android Lint](https://developer.android.com/studio/write/lint.html)
+* 潜在的ANR (由主线程中的耗时操作引起的Android Not Responding)：[StrictMode](https://developer.android.com/reference/android/os/StrictMode.html)
+* 资源和内存的泄露：[StrictMode](https://developer.android.com/reference/android/os/StrictMode.html)和[LeakCanary](https://github.com/square/leakcanary)
 
-所使用的工具：checkstyle、findbugs、PMD、Android Lint、StrictMode以及LeakCanary。
+最好的使用方式，是在创建新项目的时候就引入这些规则，在每次check-in之前修复检查到的任何错误（作为持续集成的一个检查步骤）。否则的话，面对成百上千的错误，是需要很大的勇气和毅力去逐个修复的。『从入门到放弃』并不是解决代码质量问题的正确态度。
 
-最好的使用方式，是在创建新项目的时候就引入这些规则在每次check-in之前修复检查到的任何错误。否则的话，面对成百上千的错误，是需要很大的勇气和毅力去逐个修复的。『从入门到放弃』并不是解决代码质量问题的正确态度。
 ## 如何使用
 1. 把[quality](quality)目录加入你的项目。
     * 可以直接拷贝：
@@ -95,7 +94,7 @@ public class AndroidQualityEssentialsApplication extends Application {
     * Local variable or parameter may be final
 2. 每次检查完成后，在结果面板中点击"Make final"按钮，就可以自动添加"final"关键字了。
 ### 创建工具类（Utility Class）
-对于PMD规则[UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass)，如果你的类只有静态成员变量和函数，会提示你创建Utility Class。你需要：
+对于PMD规则[UseUtilityClass](https://pmd.github.io/pmd-6.2.0/pmd_rules_java_design.html#useutilityclass)，如果你的类只有静态成员变量和函数，会提示你创建Utility Class。你需要：
   * 把类定义为final。
   * 创建一个私有的构造函数并抛出异常，以免被实例化。
 例子：
@@ -124,9 +123,9 @@ public final class FileUtil {
 ```
 ## PMD规则的权衡
 代码检查的规则都是人们长期总结出来的最佳实践，但并不是放之四海而皆准的真理。有些规则需要根据项目的具体需求来确定是否采用：
-1. [AccessorMethodGeneration](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#AccessorMethodGeneration)
+1. [AccessorMethodGeneration](https://pmd.github.io/pmd-6.2.0/pmd_rules_java_bestpractices.html#accessormethodgeneration)
 这个规则更关注性能以及减少方法数，单就我个人而言更关心信息的封装，所以我在PMD配置中排除了这个规则。如果你更关心运行的性能以及方法数（以避免Multi-dex的问题），那你就应该把这个规则包含进来。
-2. [GenericsNaming](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/naming.html#GenericsNaming)
+2. [GenericsNaming](https://pmd.github.io/pmd-6.2.0/pmd_rules_java_codestyle.html#genericsnaming)
 这个规则要求泛型的参数都采用单个大写字母。从可读性的角度我更喜欢更有意义的命名方式：以"T"结尾的类型命名，如`ItemTypeT`。如果你更喜欢看起来更简单的单字母命名，可以把这个规则从exclude中去掉。
 ## 检查详情
 ### 命名规范
@@ -156,7 +155,7 @@ public final class FileUtil {
 [FindBugs](http://findbugs.sourceforge.net/)检查代码中可能会导致Bug的[模式](http://findbugs.sourceforge.net/bugDescriptions.html)。检查中需要排除在外的文件定义在[这儿](quality/findbugs/android-exclude-filter.xml).
 如果只想进行findbugs检查，可以运行`gradlew findBugs`。
 ### 静态检查：PMD
-[PMD](https://pmd.github.io/)用来检查代码中常见缺陷的工具。规则定义在[quality/pmd/pmd-ruleset.xml](quality/pmd/pmd-ruleset.xml)中。规则的完整列表参见[这儿](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/index.html). 
+[PMD](https://pmd.github.io/)用来检查代码中常见缺陷的工具。规则定义在[quality/pmd/pmd-ruleset.xml](quality/pmd/pmd-ruleset.xml)中。规则的完整列表参见[这儿](https://pmd.github.io/pmd-6.2.0/pmd_rules_java.html). 
 如果只想进行PMD检查，可以运行`gradlew pmdCheck`。
 ### 静态检查：Android Lint
 [Android Lint](https://developer.android.com/studio/write/lint.html)为安卓特别开发的代码检查工具。完整的检查列表参考[这儿](http://tools.android.com/tips/lint-checks). 
@@ -170,9 +169,8 @@ public final class FileUtil {
 ### 使用LeakCanary发现内存泄露
 [LeakCanary](https://github.com/square/leakcanary)能帮助你发现内存泄露。它有自己单独的UI用来汇报内存泄露，列出的引用链让你能很容易地找到该从哪里断开链条，修复泄露。
 
-## 感谢
+## 致谢
 * 使用findbugs和PMD的部分参考了<https://github.com/ribot/android-boilerplate>.
-* 让静态检查并发运行的原理来源于<https://medium.com/@dpreussler/speed-up-your-android-gradle-build-baa329cdb836>.
 
 License
 =======

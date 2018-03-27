@@ -1,14 +1,13 @@
-# AndroidQualityEssentials [中文](README_zh.md)
+# AndroidQualityEssentials [[中文](README_zh.md)]
 Improve Android code quality with static code analysis and runtime check:
-* Naming Convention (Especially for resource files)
-* Code Style
-* Potential Bugs
-* Potential ANR (slow operations in the main thread)
-* Resource and Memory Leaks
+* Naming Convention (Especially for resource files), with [CheckStyle](http://checkstyle.sourceforge.net/).
+* Code Style, with [CheckStyle](http://checkstyle.sourceforge.net/).
+* Potential Bugs, with [FindBugs](http://findbugs.sourceforge.net/), [PMD](https://pmd.github.io/) and [Android Lint](https://developer.android.com/studio/write/lint.html).
+* Potential ANR (slow operations in the main thread), with [StrictMode](https://developer.android.com/reference/android/os/StrictMode.html).
+* Resource and Memory Leaks, with [StrictMode](https://developer.android.com/reference/android/os/StrictMode.html) and [LeakCanary](https://github.com/square/leakcanary).
 
-The tools used: checkstyle, findbugs, PMD, Android Lint, StrictMode and LeakCanary.
+It is recommended that you add these checks when you create a new project and fix the problems with every check-in (as part of your continuous integration process). Otherwise it would need enormous courage and patience when you face and fix the huge amount of errors.
 
-It is recommended that you add these checks when you create a new project and fix the problems with every check-in. Otherwise it would need enormous courage and patience when you face and fix the huge amount of errors.
 ## Get started
 1. Add the [quality](quality) directory to your project.
     * You can either copy it:
@@ -94,7 +93,7 @@ The naming convention defined in the [style rules](quality/checkstyle/google_che
     * Local variable or parameter may be final
 2. After each run, in the result panel, click "Make final" button to add "final" automatically.
 ### Create Utility Class
-For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#UseUtilityClass), it will prompt to create Utility Class if your class has only static fields and methods. You just need to:
+For PMD rule [UseUtilityClass](https://pmd.github.io/pmd-6.2.0/pmd_rules_java_design.html#useutilityclass), it will prompt to create Utility Class if your class has only static fields and methods. You just need to:
   * Define your utility class as final.
   * Create a private constructor and throw exception in it to prevent instantiation.
 Sample:
@@ -123,9 +122,9 @@ public final class FileUtil {
 ```
 ## Trade-offs for PMD rules
 All the static analysis rules are best practices from people's past experience, but they are not always truth that cannot be broken. Some of the PMD rules need to be based on your own preferences:
-1. [AccessorMethodGeneration](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/design.html#AccessorMethodGeneration)
+1. [AccessorMethodGeneration](https://pmd.github.io/pmd-6.2.0/pmd_rules_java_bestpractices.html#accessormethodgeneration)
 This rule prefer performance and reducing method count over encapsulation, usually I  care more about encapsulation so I exclude this rule. But if you care more about performance and method count (to avoid Multi-dex), you can include it.
-2. [GenericsNaming](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/java/naming.html#GenericsNaming)
+2. [GenericsNaming](https://pmd.github.io/pmd-6.2.0/pmd_rules_java_codestyle.html#genericsnaming)
 This rule prefer a single upper case letter for generic values. But I prefer some more meaningful names with "T" letter as the postfix, like `ItemTypeT`, for better readability. You can remove it from the "exclude" list if you like the single letter naming.
 ## What will be checked?
 ### Naming Conventions
@@ -155,7 +154,7 @@ If you would like to exclude some files like 3rd party code, you can add an `exc
 [FindBugs](http://findbugs.sourceforge.net/) scan your code for [patterns](http://findbugs.sourceforge.net/bugDescriptions.html) that may result in bugs. The files to be excluded from the analysis is defined [here](quality/findbugs/android-exclude-filter.xml).
 Run `gradlew findBugs` if you would like to run findbugs only.
 ### Static Analysis with PMD
-[PMD](https://pmd.github.io/) is a static code analyzer that can detect common programming flaws. Rules are defined in [quality/pmd/pmd-ruleset.xml](quality/pmd/pmd-ruleset.xml). Full list of the rules can be found [here](https://pmd.github.io/pmd-5.8.0/pmd-java/rules/index.html). 
+[PMD](https://pmd.github.io/) is a static code analyzer that can detect common programming flaws. Rules are defined in [quality/pmd/pmd-ruleset.xml](quality/pmd/pmd-ruleset.xml). Full list of the rules can be found [here](https://pmd.github.io/pmd-6.2.0/pmd_rules_java.html). 
 Run `gradlew pmdCheck` if you would like to run PMD only.
 ### Static Analysis with Android Lint
 [Android Lint](https://developer.android.com/studio/write/lint.html) is a Android specific static code analysis tool. The full list of checks is [here](http://tools.android.com/tips/lint-checks). 

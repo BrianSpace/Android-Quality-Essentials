@@ -15,7 +15,7 @@ checkstyle {
 
 // https://pmd.github.io/
 pmd {
-    toolVersion = '6.0.1'
+    toolVersion = '6.2.0'
 }
 
 task checkFileNames(type: Checkstyle, group: 'Verification', description: 'Check file naming convention.') {
