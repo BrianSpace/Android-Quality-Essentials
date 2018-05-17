@@ -39,6 +39,12 @@
     <!-- Exclude if you use a lot of package private declarations. -->
     <!--<exclude name="CommentDefaultAccessModifier"/>-->
   </rule>
+  <rule ref="category/java/codestyle.xml/ClassNamingConventions">
+    <properties>
+      <!-- Allow utility class to have normal names. -->
+      <property name="utilityClassPattern" value="[A-Z][a-zA-Z]+"/>
+    </properties>
+  </rule>
   <rule ref="category/java/design.xml">
     <!-- Very common in activities. -->
     <exclude name="LawOfDemeter"/>
