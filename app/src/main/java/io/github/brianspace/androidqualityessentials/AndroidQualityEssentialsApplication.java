@@ -14,11 +14,11 @@ public class AndroidQualityEssentialsApplication extends Application {
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectAll()
-                    .penaltyDeath()
+                    .penaltyLog()   // Since some violations are in Android itself or 3rd-party libs, use penaltyLog.
                     .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                     .detectAll()
-                    .penaltyDeath()   // If violations are in Android itself or 3rd-party libs, use penaltyLog.
+                    .penaltyDeath() // If violations are in Android itself or 3rd-party libs, use penaltyLog.
                     .build());
 
             // Avoid the process dedicated to LeakCanary for heap analysis.

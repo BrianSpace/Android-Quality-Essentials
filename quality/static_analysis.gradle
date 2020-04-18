@@ -1,6 +1,6 @@
-apply plugin: 'checkstyle'  // https://docs.gradle.org/3.3/userguide/checkstyle_plugin.html
-apply plugin: 'findbugs'    // https://docs.gradle.org/3.3/userguide/findbugs_plugin.html
-apply plugin: 'pmd'         // https://docs.gradle.org/3.3/userguide/pmd_plugin.html
+apply plugin: 'checkstyle'          // https://docs.gradle.org/current/userguide/checkstyle_plugin.html
+apply plugin: 'findbugs'            // https://docs.gradle.org/3.3/userguide/findbugs_plugin.html
+apply plugin: 'pmd'                 // https://docs.gradle.org/current/userguide/pmd_plugin.html
 
 final def qualityDir = buildscript.sourceFile.getParent()
 final def reportsDir = "$project.buildDir/reports"
@@ -9,13 +9,13 @@ check.dependsOn 'checkFileNames', 'checkCodeStyle', 'findBugs', 'pmdCheck'
 
 // http://checkstyle.sourceforge.net/
 checkstyle {
-    toolVersion '8.10'
+    toolVersion '8.31'
     showViolations true
 }
 
 // https://pmd.github.io/
 pmd {
-    toolVersion = '6.3.0'
+    toolVersion = '6.22.0'
 }
 
 task checkFileNames(type: Checkstyle, group: 'Verification', description: 'Check file naming convention.') {
@@ -69,7 +69,7 @@ task findBugs(type: FindBugs,
     effort = "max"
     reportLevel = "high"
     excludeFilter = new File("$qualityDir/findbugs/android-exclude-filter.xml")
-    classes = files("$project.projectDir/build/intermediates/classes")
+    classes = files("$project.buildDir/intermediates/app_classes")
 
     source 'src'
     include '**/*.java'

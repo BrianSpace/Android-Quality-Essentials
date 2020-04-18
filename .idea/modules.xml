@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidQualityEssentials.iml" filepath="$PROJECT_DIR$/AndroidQualityEssentials.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Android-Quality-Essentials.iml" filepath="$PROJECT_DIR$/Android-Quality-Essentials.iml" group="Android-Quality-Essentials" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Android-Quality-Essentials/app" />
     </modules>
   </component>
 </project>

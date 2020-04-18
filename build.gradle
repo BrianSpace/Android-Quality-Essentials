@@ -2,12 +2,19 @@
 
 buildscript {
     repositories {
+//        maven {
+//            // jcenter mirror, use this if you are in China
+//            url "https://maven.aliyun.com/repository/jcenter"
+//        }
+//        maven {
+//            // google mirror, use this if you are in China
+//            url "https://maven.aliyun.com/repository/google"
+//        }
         jcenter()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
-
+        classpath 'com.android.tools.build:gradle:3.6.2'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -15,6 +22,14 @@ buildscript {
 
 allprojects {
     repositories {
+//        maven {
+//            // jcenter mirror, use this if you are in China
+//            url "https://maven.aliyun.com/repository/jcenter"
+//        }
+//        maven {
+//            // google mirror, use this if you are in China
+//            url "https://maven.aliyun.com/repository/google"
+//        }
         jcenter()
         google()
     }
